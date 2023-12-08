@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 
-namespace BlackJack
+namespace CardGame
 {
     class Program
     {
