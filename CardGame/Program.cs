@@ -83,9 +83,18 @@ namespace CardGame
            
             try
             {
+                //Checks if input file exists in supplied path
+                if (!File.Exists(inputFile))
+                {
+                    Console.WriteLine("Input file does not exist, Please check that correct path/filename is provided");
+                    throw new Exception("Input file does not exist, Please check that correct path/filename is provided");
+                }
+
+
                 List<Player> players = new List<Player>();
 
                 string[] lines = File.ReadAllLines(inputFile);
+
                 foreach (string line in lines)
                 {
                     string[] parts = line.Replace(" ", "").Split(':');
