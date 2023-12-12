@@ -38,7 +38,7 @@ namespace CardGame
                 }
 
                 // Read player data from input file
-                List<Player> players = ReadInput(inputFile);
+                List<Player> players = ReadInput(inputFile,outputFile);
 
                 // Check if input is valid
                 if (players == null)
@@ -63,7 +63,7 @@ namespace CardGame
 
 
         // Read player data from the input file
-        static List<Player> ReadInput(string inputFile)
+        static List<Player> ReadInput(string inputFile,string outputFile)
         {
             //Array of all playing cards in a deck
             string[] deck = {"AH","AD","AC","AS",
@@ -87,6 +87,7 @@ namespace CardGame
                 if (!File.Exists(inputFile))
                 {
                     Console.WriteLine("Input file does not exist, Please check that correct path/filename is provided");
+                    WriteOutput(outputFile, "Input file does not exist, Please check that correct path/filename is provided");
                     throw new Exception("Input file does not exist, Please check that correct path/filename is provided");
                 }
 
@@ -107,12 +108,15 @@ namespace CardGame
                         if (File.ReadAllLines(inputFile).Length < 7)
                         {
                             Console.WriteLine("Invalid number of players, minimum of 7 players are required.");
+                            WriteOutput(outputFile, "Invalid number of players, minimum of 7 players are required.");
                             throw new Exception("Invalid number of cards for a player.");
+
                         }
                         // Check if each player has exactly 5 cards
                         if (cards.Length != 5)
                         {
                             Console.WriteLine("Invalid number of cards for a player.");
+                            WriteOutput(outputFile, "Invalid number of cards for a player.");
                             throw new Exception("Invalid number of cards for a player.");
                         }
 
@@ -127,6 +131,7 @@ namespace CardGame
                             else
                             {
                                 Console.WriteLine("Invalid card/cards for a player/players.");
+                                WriteOutput(outputFile, "Invalid cards/cards for a player/players.");
                                 throw new Exception("Invalid cards/cards for a player/players.");
                             }
 
